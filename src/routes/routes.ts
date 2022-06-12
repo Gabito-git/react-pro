@@ -1,5 +1,6 @@
 import { lazy, LazyExoticComponent } from "react";
-import { LazyPage1, LazyPage2, LazyPage3 } from "../01-lazyload/pages";
+import { NoLazy } from "../01-lazyload/pages/NoLazy";
+
 
 /**
  * Para poder emplear LazyLoad, el componente debe ser exportado de manera 
@@ -17,32 +18,27 @@ interface Route{
 }
 
 // Renombrar chunks
-const lazy1 = lazy( () => import(/* webpackChunkName: "LazyPage1" */'../01-lazyload/pages/LazyPage1') );
-const lazy2 = lazy( () => import(/* webpackChunkName: "LazyPage2" */'../01-lazyload/pages/LazyPage2') );
-const lazy3 = lazy( () => import(/* webpackChunkName: "LazyPage3" */'../01-lazyload/pages/LazyPage3') );
-
+const LazyLayout = lazy( () => import(/* webpackChunkName: "LazyLayout" */'../01-lazyload/layout/LazyLayout') );
 
 /**
  * Array de rutas. Se construyen dinámicamente en el archivo Navitagion.tsx
+ * Todas las subrutas /lazyload/* se cargarán conjuntamente de manera lazy una vez se 
+ * acceda al modulo lazyload, es decir, una vez se ingrese al modulo, todas las 
+ * subrutas estarán disponibles
  */
 
 export const routes: Route[] =[
   {
-    to:'/lazy1',
-    path:'/lazy1',
-    Component: lazy1,
-    name: 'Lazy-1'
+    to:'/lazyload/',
+    path:'/lazyload/*',     //(*) Todo lo que pase por esta ruta sera procesado por este path
+    Component: LazyLayout,
+    name: 'LazyLayout'
   },
   {
-    to:'/lazy2',
-    path:'/lazy2',
-    Component: lazy2,
-    name: 'Lazy-2'
+    to:'/no-lazy',
+    path:'/no-lazy',
+    Component: NoLazy,
+    name: 'No Lazy'
   },
-  {
-    to:'/lazy3',
-    path:'/lazy3',
-    Component: lazy3,
-    name: 'Lazy-3'
-  },
+
 ]
