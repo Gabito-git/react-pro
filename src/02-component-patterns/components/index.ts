@@ -9,7 +9,7 @@ export { ProductImage } from './ProductImage';
 export { ProductTitle } from './ProductTitle';
 
 
-// Para emplear el patron ProductCard.Title ....
+// Para emplear el patron ProductCard.Title .... etc
 export const ProductCard: ProductCardHOCProps = Object.assign( ProductCardHOC, {
   Title: ProductTitle,
   Image: ProductImage,

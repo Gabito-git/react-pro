@@ -27,10 +27,10 @@
 
 // importación desde assets
 
-import { createContext } from 'react';
+import { createContext, ReactElement, CSSProperties} from 'react';
 
 import { useProduct } from '../hooks/useProduct';
-import { ProductContextInterface, ProductCardProps } from '../interfaces/interfaces';
+import { ProductContextInterface, Product } from '../interfaces/interfaces';
 
 import styles from '../styles/styles.module.css';
 
@@ -59,9 +59,15 @@ export const ProductContext = createContext({} as ProductContextInterface);
 //   increasyBy: (value: number) => void
 // }
 
+export interface Props{
+  className?: string;     // Introducido en el capitulo de extensible styles
+  product: Product;
+  children?: ReactElement | ReactElement[]; // Un componente o varios
+  style?: CSSProperties
+}
 
 
-export const ProductCard = ( { children, product }: ProductCardProps) => {
+export const ProductCard = ( { children, product, className, style }: Props) => {
 
   const { counter, increaseBy } = useProduct();
   
@@ -70,7 +76,10 @@ export const ProductCard = ( { children, product }: ProductCardProps) => {
 
   return (
     <Provider value={ { counter, increaseBy, product } }>
-      <div className={ styles.productCard }>
+      <div 
+        className={ `${styles.productCard} ${className}` }
+        style={style}
+      >
         {/* Uso de imagen desde Public */}
         {/* <img className={ styles.productImg } src='./coffee-mug.png' alt='Coffe Mug'/> */}
 
