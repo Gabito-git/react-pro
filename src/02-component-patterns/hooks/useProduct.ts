@@ -10,8 +10,6 @@ interface UseProductArgs{
 export const useProduct = ({ onChange, product, value=0}: UseProductArgs) => {
   const [counter, setCounter] = useState( value );
 
-
-
   useEffect(() => {
      setCounter( value );
   }, [value])
