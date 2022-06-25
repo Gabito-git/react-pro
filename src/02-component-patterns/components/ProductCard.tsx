@@ -30,7 +30,7 @@
 import { createContext, ReactElement, CSSProperties} from 'react';
 
 import { useProduct } from '../hooks/useProduct';
-import { ProductContextInterface, Product } from '../interfaces/interfaces';
+import { ProductContextInterface, Product, OnChangeArgs } from '../interfaces/interfaces';
 
 import styles from '../styles/styles.module.css';
 
@@ -63,13 +63,15 @@ export interface Props{
   className?: string;     // Introducido en el capitulo de extensible styles
   product: Product;
   children?: ReactElement | ReactElement[]; // Un componente o varios
-  style?: CSSProperties
+  style?: CSSProperties;
+  onChange?: (args: OnChangeArgs) => void;
+  value?: number
 }
 
 
-export const ProductCard = ( { children, product, className, style }: Props) => {
+export const ProductCard = ( { children, product, className, style, onChange, value }: Props) => {
 
-  const { counter, increaseBy } = useProduct();
+  const { counter, increaseBy } = useProduct({ onChange, product, value });
   
 
   const { Provider } = ProductContext;

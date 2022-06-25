@@ -1,7 +1,7 @@
 
 - components/ProductCard.tsx: Importación de css por modulos, uso de imagenes desde /public, uso de imagen  desde /assets, type de la propiedad children.
 
-- componentes/ShoppingPage.tsx: Renderiza el componente ProductCard de las dos formas que tiene el Compound component
+- componentes/ShoppingPage.tsx: Renderiza el componente ProductCard de las dos formas que tiene el Compound component, interfaz [key: sring]...
 
 - styles/styles.module.css: Llamado asi para poder ser importado como objeto y tratarlo asi
 
