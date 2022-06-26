@@ -72,7 +72,6 @@ export interface Props{
 export const ProductCard = ( { children, product, className, style, onChange, value }: Props) => {
 
   const { counter, increaseBy } = useProduct({ onChange, product, value });
-  
 
   const { Provider } = ProductContext;
 
